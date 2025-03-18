@@ -1,22 +1,33 @@
-import { ProductsType } from '@/types'
-import { createSlice } from '@reduxjs/toolkit'
 
-export interface CounterState {
-  intialState: ProductsType[]
+import { ProductType } from '@/types'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+interface OrderType {
+    orderList:ProductType[]
+}
+const initialState:OrderType = {
+    orderList: [],
 }
 
-const initialState: CounterState = {
-    intialState: [],
-}
-
-export const counterSlice = createSlice({
-  name: 'counter',
+export const orderSlice = createSlice({
+  name: 'order_list',
   initialState,
   reducers: {
-    
+    saveOrderProduct: (state:OrderType, action:PayloadAction<ProductType>):OrderType | any => {
+      const isThere = state.orderList.some(item => item.id === action.payload.id && item.sizeId === action.payload.sizeId && item.typeId === action.payload.typeId)
+      if(isThere){
+        const result = state.orderList.map((item:ProductType)=> item.id === action.payload.id ? action.payload : item)
+        return{
+          orderList:result
+        }
+      }else{
+        return {
+          orderList:[...state.orderList, action.payload]    
+       }
+      }
+       
+    }
   },
 })
 
-export const {} = counterSlice.actions
-
-export default counterSlice.reducer
+export const { saveOrderProduct } = orderSlice.actions

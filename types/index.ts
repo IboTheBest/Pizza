@@ -15,7 +15,7 @@ export interface CategoriesType {
     isActive: boolean
 }
 
-export interface ProductsType {
+export interface ProductType {
     id?: string,
     img: string
     title: string

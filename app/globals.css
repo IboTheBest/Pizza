@@ -1,18 +1,24 @@
 @import "tailwindcss";
-body{
+
+body {
   background-color: #FFDF8C;
   padding: 45px;
 }
 
-.tabs[data-state="active"]{
+.tabs[data-state="active"] {
   background-color: black;
   color: #F9F9F9;
+  font-weight: 900;
+  text-align: center;
 }
-.typeTap[data-state="active"]{
+
+.typeTap[data-state="active"] {
   background-color: white;
   color: black;
-
+  font-weight: 900;
+  text-align: center
 }
+
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
@@ -128,8 +134,8 @@ body{
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
-
